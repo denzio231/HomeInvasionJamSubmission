@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dfxn2hau34py8"]
 
-[ext_resource type="Script" uid="uid://de7e2ihsy7rwx" path="res://player_scene.gd" id="1_g662q"]
-[ext_resource type="Shader" uid="uid://d1k26yjhjcs78" path="res://outlineView.gdshader" id="2_g5c48"]
+[ext_resource type="Script" uid="uid://de7e2ihsy7rwx" path="res://Scripts/player_scene.gd" id="1_g662q"]
+[ext_resource type="Shader" uid="uid://d1k26yjhjcs78" path="res://Shaders/outlineView.gdshader" id="2_g5c48"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kwgn5"]
 
@@ -13,6 +13,7 @@ render_priority = 0
 shader = ExtResource("2_g5c48")
 
 [node name="PlayerScene" type="CharacterBody3D"]
+floor_max_angle = 1.0472
 script = ExtResource("1_g662q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

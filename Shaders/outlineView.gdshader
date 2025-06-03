@@ -22,11 +22,11 @@ void fragment() {
 	depths[3] = SCREEN_UV+vec2(-1., 0.)*e;
 	//CODE FOR NORMAL BASED OUTLINES
 	vec3 screen_normal = texture(NORMAL_ROUGHNESS_TEXTURE, SCREEN_UV).xyz;
-	float mainDepth = textureLod(depth_texture, SCREEN_UV, 0.0).r;
+	float mainDepth = textureLod(depth_texture, SCREEN_UV, 0.0).x;
 	float normDot = 0.0;
 	float sumDiffDepth = 0.0;
 	for (int i = 0; i < 4; i++) {
-		sumDiffDepth += abs(mainDepth-textureLod(depth_texture, depths[i], 0.0).r);
+		sumDiffDepth += abs(mainDepth-textureLod(depth_texture, depths[i], 0.0).x);
 		//texture(NORMAL_ROUGHNESS_TEXTURE, uvs[i]).xyz; gives us the norm at the UV one pixel away
 		normDot += dot(screen_normal*2.0-vec3(1.0,1.0,1.0), texture(NORMAL_ROUGHNESS_TEXTURE, uvs[i]).xyz*2.0-vec3(1.0,1.0,1.0));
 	}
