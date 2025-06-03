@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://n4t3iteuy0ob"]
+[gd_scene load_steps=13 format=3 uid="uid://n4t3iteuy0ob"]
 
 [ext_resource type="PackedScene" uid="uid://dfxn2hau34py8" path="res://Scenes/player_scene.tscn" id="1_huasi"]
 [ext_resource type="MeshLibrary" uid="uid://dcjm44bv833im" path="res://assets/newLib.tres" id="2_m1efj"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dhg67ggknvedj" path="res://assets/Models/FBX format/cabin-window-b.fbx" id="6_ioaeq"]
 [ext_resource type="PackedScene" uid="uid://d1mipnvhfba3q" path="res://assets/Models/FBX format/tree.fbx" id="7_7ewk0"]
 [ext_resource type="PackedScene" uid="uid://b8l7yg3i64h85" path="res://assets/Models/FBX format/tree-decorated.fbx" id="8_lhp3t"]
-[ext_resource type="Texture2D" uid="uid://4dadtm3eeeaf" path="res://icon.svg" id="9_m1efj"]
 [ext_resource type="PackedScene" uid="uid://de3ruflukwqh7" path="res://Scenes/computer_scene.tscn" id="10_mai8y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o3jxj"]
@@ -63,22 +62,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.11937, 1, 7.93265)
 [node name="tree-decorated" parent="." instance=ExtResource("8_lhp3t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.869369, 1, 12.5342)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 5.0
-offset_bottom = 5.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("9_m1efj")
-expand_mode = 1
-
-[node name="ComputerScene" parent="CanvasLayer" instance=ExtResource("10_mai8y")]
+[node name="ComputerScene" parent="." instance=ExtResource("10_mai8y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27941, 1.5, 14.7518)

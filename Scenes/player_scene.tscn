@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfxn2hau34py8"]
+[gd_scene load_steps=7 format=3 uid="uid://dfxn2hau34py8"]
 
 [ext_resource type="Script" uid="uid://de7e2ihsy7rwx" path="res://Scripts/player_scene.gd" id="1_g662q"]
 [ext_resource type="Shader" uid="uid://d1k26yjhjcs78" path="res://Shaders/outlineView.gdshader" id="2_g5c48"]
+[ext_resource type="Texture2D" uid="uid://4dadtm3eeeaf" path="res://icon.svg" id="3_e13mc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kwgn5"]
 
@@ -26,3 +27,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.110566)
 mesh = SubResource("QuadMesh_g662q")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_g5c48")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_e13mc")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -50.0
+offset_right = 80.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
