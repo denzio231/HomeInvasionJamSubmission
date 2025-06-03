@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfxn2hau34py8"]
+
+[ext_resource type="Script" uid="uid://de7e2ihsy7rwx" path="res://player_scene.gd" id="1_g662q"]
+[ext_resource type="Shader" uid="uid://d1k26yjhjcs78" path="res://outlineView.gdshader" id="2_g5c48"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kwgn5"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_g662q"]
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g5c48"]
+render_priority = 0
+shader = ExtResource("2_g5c48")
+
+[node name="PlayerScene" type="CharacterBody3D"]
+script = ExtResource("1_g662q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_kwgn5")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.110566)
+mesh = SubResource("QuadMesh_g662q")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_g5c48")
