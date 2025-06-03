@@ -18,6 +18,7 @@ func _input(event):
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 var RAY_LENGTH = 10000
+var currentHover:Node3D = null
 func _physics_process(delta: float) -> void:
 	var space_state = get_world_3d().direct_space_state
 	var cam = $Camera3D
@@ -27,8 +28,13 @@ func _physics_process(delta: float) -> void:
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
 	query.collide_with_areas = true
 	var result = space_state.intersect_ray(query)
-	if result.has("collider"):
-		print(result.collider)
+	if result.has("collider") and not currentHover:
+		var res:Node3D = result.collider
+		if res.is_in_group("interactable"):
+			currentHover = res
+			print(currentHover.mess())
+	elif currentHover:
+		currentHover = null
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	var input_dir := Input.get_vector("LEFT","RIGHT","UP","DOWN")

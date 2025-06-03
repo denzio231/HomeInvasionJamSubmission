@@ -21,6 +21,10 @@ window/size/viewport_width=534
 window/size/viewport_height=300
 window/stretch/mode="viewport"
 
+[global_group]
+
+interactable=""
+
 [input]
 
 UP={

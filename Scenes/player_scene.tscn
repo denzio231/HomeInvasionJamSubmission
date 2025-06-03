@@ -12,7 +12,7 @@ size = Vector2(2, 2)
 render_priority = 0
 shader = ExtResource("2_g5c48")
 
-[node name="PlayerScene" type="CharacterBody3D"]
+[node name="PlayerScene" type="CharacterBody3D" groups=["interactable"]]
 floor_max_angle = 1.0472
 script = ExtResource("1_g662q")
 
