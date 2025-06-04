@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 var sens = 0.3
 var currentHover:StaticBody3D = null
@@ -10,7 +9,7 @@ func _input(event):
 		rotation_degrees.y -= event.relative.x*sens
 		$Camera3D.rotation_degrees.x = clamp($Camera3D.rotation_degrees.x,-90,90)
 	elif event.is_action_pressed("INTERACT"):
-		currentHover.onInteract(self)
+		if currentHover: currentHover.onInteract(self)
 	elif event.is_action_pressed("FOCUS"):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -37,6 +36,7 @@ func _physics_process(delta: float) -> void:
 	query.collide_with_areas = true
 	var result = space_state.intersect_ray(query)
 	var noSelection = true
+	Global.Player = self
 	if result.has("collider"):
 			var res:Node3D = result.collider
 			if res.is_in_group("interactable"):

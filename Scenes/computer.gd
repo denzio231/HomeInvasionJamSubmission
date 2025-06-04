@@ -1,5 +1,10 @@
 extends interactable
+var isFunctioning = true
 func mess():
-	return "Use computer(e)"
+	if isFunctioning:	return "Get Pendrive(e)"
+	else: return "It no longer works"
 func onInteract(player:CharacterBody3D):
-	print('aight bet')
+	var pendrives = Global.get("PendrivesCaught")
+	pendrives+=1
+	Global.set("PendrivesCaught", pendrives)
+	isFunctioning = false
