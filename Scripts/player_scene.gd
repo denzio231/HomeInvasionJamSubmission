@@ -4,19 +4,22 @@ extends CharacterBody3D
 const SPEED = 5.0
 var sens = 0.3
 var currentHover:StaticBody3D = null
+var canMove = true
 func _input(event):
-	if event is InputEventMouseMotion:
-		$Camera3D.rotation_degrees.x -= event.relative.y*sens
-		rotation_degrees.y -= event.relative.x*sens
-		$Camera3D.rotation_degrees.x = clamp($Camera3D.rotation_degrees.x,-90,90)
-	elif event.is_action_pressed("INTERACT"):
-		currentHover.onInteract(self)
-	elif event.is_action_pressed("FOCUS"):
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	elif event.is_action_pressed("ui_cancel"):
+	if canMove:
+		if event is InputEventMouseMotion:
+			$Camera3D.rotation_degrees.x -= event.relative.y*sens
+			rotation_degrees.y -= event.relative.x*sens
+			$Camera3D.rotation_degrees.x = clamp($Camera3D.rotation_degrees.x,-90,90)
+		elif event.is_action_pressed("INTERACT"):
+			if currentHover:
+				currentHover.onInteract(self)
+		elif event.is_action_pressed("FOCUS"):
+			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			else:
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -26,7 +29,7 @@ func showText(text):
 func hideText():
 	$CanvasLayer/RichTextLabel.text = ""
 	$CanvasLayer/RichTextLabel.hide()
-var RAY_LENGTH = 2
+var RAY_LENGTH = 4
 func _physics_process(delta: float) -> void:
 	var space_state = get_world_3d().direct_space_state
 	var cam = $Camera3D
@@ -37,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	query.collide_with_areas = true
 	var result = space_state.intersect_ray(query)
 	var noSelection = true
-	if result.has("collider"):
+	if result.has("collider") and canMove:
 			var res:Node3D = result.collider
 			if res.is_in_group("interactable"):
 				noSelection = false
@@ -49,7 +52,9 @@ func _physics_process(delta: float) -> void:
 		currentHover = null
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	var input_dir := Input.get_vector("LEFT","RIGHT","UP","DOWN")
+	var input_dir := Vector2.ZERO
+	if canMove:
+		input_dir = Input.get_vector("LEFT","RIGHT","UP","DOWN")
 	var direction := (global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
