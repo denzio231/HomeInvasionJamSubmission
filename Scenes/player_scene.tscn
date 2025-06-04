@@ -220,6 +220,7 @@ grow_vertical = 0
 horizontal_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
 position = Vector2(322, 180)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_2uio5")
