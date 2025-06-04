@@ -5,17 +5,18 @@ var sens = 0.3
 var currentHover:StaticBody3D = null
 var canMove = true
 func _input(event):
-	if event is InputEventMouseMotion:
-		$Camera3D.rotation_degrees.x -= event.relative.y*sens
-		rotation_degrees.y -= event.relative.x*sens
-		$Camera3D.rotation_degrees.x = clamp($Camera3D.rotation_degrees.x,-90,90)
-	elif event.is_action_pressed("INTERACT"):
-		if currentHover: currentHover.onInteract(self)
-	elif event.is_action_pressed("FOCUS"):
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if canMove:
+		if event is InputEventMouseMotion:
+			$Camera3D.rotation_degrees.x -= event.relative.y*sens
+			rotation_degrees.y -= event.relative.x*sens
+			$Camera3D.rotation_degrees.x = clamp($Camera3D.rotation_degrees.x,-90,90)
+		elif event.is_action_pressed("INTERACT"):
+			if currentHover: currentHover.onInteract(self)
+		elif event.is_action_pressed("FOCUS"):
+			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			else:
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 func _ready():
