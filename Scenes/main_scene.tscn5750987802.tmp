@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://n4t3iteuy0ob"]
+[gd_scene load_steps=13 format=3 uid="uid://n4t3iteuy0ob"]
 
 [ext_resource type="PackedScene" uid="uid://dfxn2hau34py8" path="res://Scenes/player_scene.tscn" id="1_huasi"]
 [ext_resource type="MeshLibrary" uid="uid://dcjm44bv833im" path="res://assets/newLib.tres" id="2_m1efj"]
@@ -8,12 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dhg67ggknvedj" path="res://assets/Models/FBX format/cabin-window-b.fbx" id="6_ioaeq"]
 [ext_resource type="PackedScene" uid="uid://d1mipnvhfba3q" path="res://assets/Models/FBX format/tree.fbx" id="7_7ewk0"]
 [ext_resource type="PackedScene" uid="uid://b8l7yg3i64h85" path="res://assets/Models/FBX format/tree-decorated.fbx" id="8_lhp3t"]
-[ext_resource type="PackedScene" path="res://Scenes/enemy.tscn" id="10_76v2p"]
 [ext_resource type="PackedScene" uid="uid://de3ruflukwqh7" path="res://Scenes/computer_scene.tscn" id="10_mai8y"]
-
-[sub_resource type="GDScript" id="GDScript_mai8y"]
-script/source = "extends Node
-"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o3jxj"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -29,7 +24,6 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="MainScene" type="Node3D"]
-script = SubResource("GDScript_mai8y")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2c62f")
@@ -70,6 +64,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.869369, 1, 12.5342)
 
 [node name="ComputerScene" parent="." instance=ExtResource("10_mai8y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27941, 1.5, 14.7518)
-
-[node name="Enemy" parent="." instance=ExtResource("10_76v2p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45104, 0)

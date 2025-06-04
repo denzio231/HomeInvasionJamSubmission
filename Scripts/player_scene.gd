@@ -1,25 +1,22 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 var sens = 0.3
 var currentHover:StaticBody3D = null
 var canMove = true
 func _input(event):
-	if canMove:
-		if event is InputEventMouseMotion:
-			$Camera3D.rotation_degrees.x -= event.relative.y*sens
-			rotation_degrees.y -= event.relative.x*sens
-			$Camera3D.rotation_degrees.x = clamp($Camera3D.rotation_degrees.x,-90,90)
-		elif event.is_action_pressed("INTERACT"):
-			if currentHover:
-				currentHover.onInteract(self)
-		elif event.is_action_pressed("FOCUS"):
-			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			else:
-				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	if event.is_action_pressed("ui_cancel"):
+	if event is InputEventMouseMotion:
+		$Camera3D.rotation_degrees.x -= event.relative.y*sens
+		rotation_degrees.y -= event.relative.x*sens
+		$Camera3D.rotation_degrees.x = clamp($Camera3D.rotation_degrees.x,-90,90)
+	elif event.is_action_pressed("INTERACT"):
+		if currentHover: currentHover.onInteract(self)
+	elif event.is_action_pressed("FOCUS"):
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	elif event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -40,6 +37,7 @@ func _physics_process(delta: float) -> void:
 	query.collide_with_areas = true
 	var result = space_state.intersect_ray(query)
 	var noSelection = true
+	Global.Player = self
 	if result.has("collider") and canMove:
 			var res:Node3D = result.collider
 			if res.is_in_group("interactable"):

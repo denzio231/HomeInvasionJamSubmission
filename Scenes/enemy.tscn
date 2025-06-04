@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsd262ntddqqu"]
+
+[ext_resource type="Script" uid="uid://ch5esw4l5jfnf" path="res://Scenes/enemy.gd" id="1_hghv2"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_m1efj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_drdnd"]
+
+[node name="Enemy" type="Node3D"]
+script = ExtResource("1_hghv2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0323528, 0.999476, 0, -0.999476, -0.0323528, 0, 0, -1.83542)
+mesh = SubResource("TorusMesh_m1efj")
+surface_material_override/0 = SubResource("ShaderMaterial_drdnd")

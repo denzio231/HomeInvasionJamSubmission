@@ -29,8 +29,9 @@ func cmd(text):
 	text = text.rstrip("\n")
 	var arr = text.split(" ")
 	var cmd = arr[0]
-	var commandFunc:Callable = $Commands.cmds[cmd].call
-	if commandFunc:
+	var commandT = $Commands.cmds.get(cmd)
+	if commandT:
+		var commandFunc = commandT.call
 		commandFunc.call()
 	else:
 		consolePrint("Not a command")
