@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsd262ntddqqu"]
+[gd_scene load_steps=4 format=3 uid="uid://hax36dt4emyq"]
 
-[ext_resource type="Script" uid="uid://ch5esw4l5jfnf" path="res://Scenes/enemy.gd" id="1_hghv2"]
+[ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_hghv2"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_m1efj"]
 

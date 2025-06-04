@@ -10,7 +10,9 @@ func consoleClear():
 	ConsoleControl.lines = 0
 	ConsoleControl.colOveride = true
 	ConsoleControl.onTextChange()
-
+func consoleCmds():
+	for i in cmds.keys():
+		ConsoleControl.consolePrint(i+": "+cmds[i].desc)
 var cmds = {
 	"clear" : {
 		"desc" : "Clears text from console",
@@ -19,5 +21,9 @@ var cmds = {
 	"quit" : {
 		"desc" : "Quits console",
 		"call" : consoleQuit
+	},
+	"cmds" : {
+		"desc" : "Lists commands",
+		"call" : consoleCmds
 	}
 }
