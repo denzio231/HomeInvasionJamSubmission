@@ -4,6 +4,7 @@ const SPEED = 5.0
 var sens = 0.3
 var currentHover:StaticBody3D = null
 var canMove = true
+var attacking = false
 func _input(event):
 	if canMove:
 		if event is InputEventMouseMotion:
@@ -17,10 +18,19 @@ func _input(event):
 				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			else:
 				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		elif event.is_action_pressed("ATTACK") and not attacking:
+			attacking = true
+			$CanvasLayer/AnimatedSprite2D.play("attackUSB")
+			await $CanvasLayer/AnimatedSprite2D.animation_finished
+			$CanvasLayer/AnimatedSprite2D.play("idleUSB")
+			attacking = false
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	$CanvasLayer/AnimatedSprite2D.play("wieldUSB")
+	await $CanvasLayer/AnimatedSprite2D.animation_finished
+	$CanvasLayer/AnimatedSprite2D.play("idleUSB")
 func showText(text):
 	$CanvasLayer/RichTextLabel.text = text
 	$CanvasLayer/RichTextLabel.show()

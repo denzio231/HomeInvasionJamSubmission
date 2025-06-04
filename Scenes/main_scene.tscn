@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://n4t3iteuy0ob"]
 
-[ext_resource type="PackedScene" uid="uid://dfxn2hau34py8" path="res://Scenes/player_scene.tscn" id="1_huasi"]
+[ext_resource type="PackedScene" uid="uid://kx5m88yo3g74" path="res://Scenes/player_scene.tscn" id="1_huasi"]
 [ext_resource type="MeshLibrary" uid="uid://dcjm44bv833im" path="res://assets/newLib.tres" id="2_m1efj"]
 [ext_resource type="PackedScene" uid="uid://wh4dbihinq7e" path="res://assets/Models/FBX format/bench-short.fbx" id="3_mai8y"]
 [ext_resource type="PackedScene" uid="uid://omxhay6ipk8h" path="res://assets/Models/FBX format/bench.fbx" id="4_76v2p"]
