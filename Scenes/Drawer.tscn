@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3fwa306ed42n"]
+
+[ext_resource type="Script" uid="uid://css4xd7bxxyxq" path="res://Scripts/drawer.gd" id="1_lx1ul"]
+
+[sub_resource type="Curve3D" id="Curve3D_lx1ul"]
+
+[node name="Drawer" type="StaticBody3D"]
+collision_layer = 2
+script = ExtResource("1_lx1ul")
+metadata/_custom_type_script = "uid://bfvrmdsvvwjs5"
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_lx1ul")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Path3D/PathFollow3D"]
+remote_path = NodePath("../../..")
