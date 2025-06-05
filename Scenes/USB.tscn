@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dejchndi0bnh"]
+
+[ext_resource type="Script" uid="uid://brb3yughoq2rv" path="res://Scripts/usb.gd" id="1_gqxsy"]
+[ext_resource type="PackedScene" uid="uid://dpabe3pp4hu36" path="res://assets/USB.glb" id="2_gqxsy"]
+[ext_resource type="SpriteFrames" uid="uid://dxwhh54vhd8b1" path="res://assets/UsbAnim.tres" id="2_nt8sx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nt8sx"]
+size = Vector3(0.282959, 0.230652, 0.448168)
+
+[node name="Usb" type="StaticBody3D"]
+collision_layer = 2
+script = ExtResource("1_gqxsy")
+anim = ExtResource("2_nt8sx")
+metadata/_custom_type_script = "uid://bfvrmdsvvwjs5"
+
+[node name="USB" parent="." instance=ExtResource("2_gqxsy")]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0172014)
+shape = SubResource("BoxShape3D_nt8sx")

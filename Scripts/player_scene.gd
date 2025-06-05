@@ -5,6 +5,12 @@ var sens = 0.3
 var currentHover:StaticBody3D = null
 var canMove = true
 var attacking = false
+@onready var AnimSprite:AnimatedSprite2D = $CanvasLayer/AnimatedSprite2D
+func loadAnim(anim:SpriteFrames):
+	AnimSprite.sprite_frames = anim
+	AnimSprite.play("wield")
+	await AnimSprite.animation_finished
+	AnimSprite.play("idle")
 func _input(event):
 	if canMove:
 		if event is InputEventMouseMotion:
@@ -19,18 +25,19 @@ func _input(event):
 			else:
 				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		elif event.is_action_pressed("ATTACK") and not attacking:
-			attacking = true
-			$CanvasLayer/AnimatedSprite2D.play("attackUSB")
-			await $CanvasLayer/AnimatedSprite2D.animation_finished
-			$CanvasLayer/AnimatedSprite2D.play("idleUSB")
-			attacking = false
+			if AnimSprite.sprite_frames.has_animation("attack"):
+				attacking = true
+				AnimSprite.play("attack")
+				await AnimSprite.animation_finished
+				AnimSprite.play("idle")
+				attacking = false
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	$CanvasLayer/AnimatedSprite2D.play("wieldUSB")
-	await $CanvasLayer/AnimatedSprite2D.animation_finished
-	$CanvasLayer/AnimatedSprite2D.play("idleUSB")
+	#$CanvasLayer/AnimatedSprite2D.play("wieldUSB")
+	#await $CanvasLayer/AnimatedSprite2D.animation_finished
+	#$CanvasLayer/AnimatedSprite2D.play("idleUSB")
 func showText(text):
 	$CanvasLayer/RichTextLabel.text = text
 	$CanvasLayer/RichTextLabel.show()
@@ -38,6 +45,7 @@ func hideText():
 	$CanvasLayer/RichTextLabel.text = ""
 	$CanvasLayer/RichTextLabel.hide()
 var RAY_LENGTH = 4
+var is_visible = false
 func _physics_process(delta: float) -> void:
 	var space_state = get_world_3d().direct_space_state
 	var cam = $Camera3D
@@ -55,10 +63,12 @@ func _physics_process(delta: float) -> void:
 				noSelection = false
 				if res != currentHover:
 					currentHover = res
+					is_visible = true
 					showText(currentHover.mess())
-	if noSelection and currentHover:
+	if noSelection and is_visible:
 		hideText()
 		currentHover = null
+		is_visible = false
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	var input_dir := Vector2.ZERO

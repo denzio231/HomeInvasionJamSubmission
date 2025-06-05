@@ -1,16 +1,13 @@
 extends interactable
 var isFunctioning = true
 func mess():
-	if isFunctioning:	return "Get Pendrive(e)"
-	else: return "It no longer works"
+	return "Use Computer(e)"
 func onInteract(player:CharacterBody3D):
+	player.get_node("CanvasLayer").hide()
 	player.canMove = false
 	$CanvasLayer/ComputerUi.perm_focus()
 	$CanvasLayer/ComputerUi.show()
 	$CanvasLayer/ComputerUi.connect("quit",func(): 
 		player.canMove = true
+		player.get_node("CanvasLayer").show()
 	,CONNECT_ONE_SHOT)
-	var pendrives = Global.get("PendrivesCaught")
-	pendrives+=1
-	Global.set("PendrivesCaught", pendrives)
-	isFunctioning = false

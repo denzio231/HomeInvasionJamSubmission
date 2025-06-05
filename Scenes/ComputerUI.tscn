@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cy1o6x0bg11q6"]
 
-[ext_resource type="Script" uid="uid://dcgg3o8nfhj80" path="res://Scenes/computer_ui.gd" id="1_vhm3r"]
-[ext_resource type="Script" uid="uid://cjda3e03sdobr" path="res://Scenes/commands.gd" id="2_4g73r"]
+[ext_resource type="Script" uid="uid://dcgg3o8nfhj80" path="res://Scripts/computer_ui.gd" id="1_vhm3r"]
+[ext_resource type="Script" uid="uid://cjda3e03sdobr" path="res://Scripts/commands.gd" id="2_4g73r"]
 
 [node name="ComputerUi" type="Control"]
 layout_mode = 3

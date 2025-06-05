@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://n4t3iteuy0ob"]
+[gd_scene load_steps=16 format=3 uid="uid://n4t3iteuy0ob"]
 
 [ext_resource type="PackedScene" uid="uid://kx5m88yo3g74" path="res://Scenes/player_scene.tscn" id="1_huasi"]
 [ext_resource type="MeshLibrary" uid="uid://dcjm44bv833im" path="res://assets/newLib.tres" id="2_m1efj"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b8l7yg3i64h85" path="res://assets/Models/FBX format/tree-decorated.fbx" id="8_lhp3t"]
 [ext_resource type="PackedScene" uid="uid://hax36dt4emyq" path="res://Scenes/enemy.tscn" id="10_76v2p"]
 [ext_resource type="PackedScene" uid="uid://de3ruflukwqh7" path="res://Scenes/computer_scene.tscn" id="10_mai8y"]
+[ext_resource type="PackedScene" uid="uid://dejchndi0bnh" path="res://Scenes/USB.tscn" id="11_76v2p"]
 
 [sub_resource type="GDScript" id="GDScript_mai8y"]
 script/source = "extends Node
@@ -73,3 +74,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27941, 1.5, 14.7518)
 
 [node name="Enemy" parent="." instance=ExtResource("10_76v2p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45104, 0)
+
+[node name="Usb" parent="." instance=ExtResource("11_76v2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95299, 1.88379, 3.9614)
