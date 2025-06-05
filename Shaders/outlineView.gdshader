@@ -23,6 +23,10 @@ void fragment() {
 	//CODE FOR NORMAL BASED OUTLINES
 	vec3 screen_normal = texture(NORMAL_ROUGHNESS_TEXTURE, SCREEN_UV).xyz;
 	float mainDepth = textureLod(depth_texture, SCREEN_UV, 0.0).x;
+	vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, mainDepth);
+	vec4 view = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
+	view.xyz /= view.w;
+	float linearDepth = -view.z;
 	float normDot = 0.0;
 	float sumDiffDepth = 0.0;
 	for (int i = 0; i < 4; i++) {
@@ -32,8 +36,12 @@ void fragment() {
 	}
 	normDot /= 4.0;
 	sumDiffDepth /= 4.0;
-	if(normDot<0.99||sumDiffDepth>0.001){
-		ALBEDO = vec3(255.0,0.0,0.0);
+	if((normDot<0.99||sumDiffDepth>0.001)){
+		float brightness = 1.0*(1.0/(12.0*linearDepth));
+		if(brightness<0.0001){
+			brightness=0.0;
+		}
+		ALBEDO = vec3(brightness,0.0,0.0);
 	}
 
 }

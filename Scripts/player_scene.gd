@@ -25,12 +25,13 @@ func _input(event):
 			else:
 				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		elif event.is_action_pressed("ATTACK") and not attacking:
-			if AnimSprite.sprite_frames.has_animation("attack"):
-				attacking = true
-				AnimSprite.play("attack")
-				await AnimSprite.animation_finished
-				AnimSprite.play("idle")
-				attacking = false
+			if AnimSprite.sprite_frames:
+				if AnimSprite.sprite_frames.has_animation("attack"):
+					attacking = true
+					AnimSprite.play("attack")
+					await AnimSprite.animation_finished
+					AnimSprite.play("idle")
+					attacking = false
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 func _ready():

@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://kx5m88yo3g74"]
+[gd_scene load_steps=7 format=3 uid="uid://kx5m88yo3g74"]
 
 [ext_resource type="Script" uid="uid://de7e2ihsy7rwx" path="res://Scripts/player_scene.gd" id="1_g662q"]
 [ext_resource type="Shader" uid="uid://d1k26yjhjcs78" path="res://Shaders/outlineView.gdshader" id="2_g5c48"]
 [ext_resource type="Texture2D" uid="uid://4dadtm3eeeaf" path="res://icon.svg" id="3_e13mc"]
-[ext_resource type="SpriteFrames" uid="uid://dxwhh54vhd8b1" path="res://assets/UsbAnim.tres" id="4_q0huo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kwgn5"]
 
@@ -65,5 +64,4 @@ horizontal_alignment = 1
 texture_filter = 1
 position = Vector2(322, 180)
 scale = Vector2(2, 2)
-sprite_frames = ExtResource("4_q0huo")
 animation = &"wield"
