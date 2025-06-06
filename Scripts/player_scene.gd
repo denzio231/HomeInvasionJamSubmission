@@ -1,14 +1,13 @@
 extends CharacterBody3D
-@onready var AudioListener = $AudioStreamPlayer3D
-@onready var AnimSprite:AnimatedSprite2D = $CanvasLayer/AnimatedSprite2D
-@onready var cam = $Camera3D
-@onready var HITBOX:Area3D = $Area3D
+
 const SPEED = 5.0
 var sens = 0.3
 var currentHover:StaticBody3D = null
 var canMove = true
 var attacking = false
-
+@onready var AnimSprite:AnimatedSprite2D = $CanvasLayer/AnimatedSprite2D
+@onready var cam = $Camera3D
+@onready var HITBOX:Area3D = $Area3D
 func loadAnim(anim:SpriteFrames):
 	AnimSprite.sprite_frames = anim
 	AnimSprite.play("wield")
@@ -27,11 +26,15 @@ func _input(event):
 				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			else:
 				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		elif event.is_action_pressed("ATTACK") and not attacking:
-			if AnimSprite.sprite_frames:
+		elif event.is_action_pressed("ATTACK") and not attacking and Global.pendriveHeld:
+			if AnimSprite.sprite_frames and Global.pendriveHeld.loaded:
 				if AnimSprite.sprite_frames.has_animation("attack"):
 					attacking = true
 					AnimSprite.play("attack")
+					var bodies = HITBOX.get_overlapping_bodies()
+					for i in bodies:
+						if i.has_method('deal_damage'):
+							i.deal_damage()
 					await AnimSprite.animation_finished
 					AnimSprite.play("idle")
 					attacking = false
@@ -39,7 +42,6 @@ func _input(event):
 		get_tree().quit()
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	AudioListener.play()
 	#$CanvasLayer/AnimatedSprite2D.play("wieldUSB")
 	#await $CanvasLayer/AnimatedSprite2D.animation_finished
 	#$CanvasLayer/AnimatedSprite2D.play("idleUSB")
@@ -49,17 +51,19 @@ func showText(text):
 func hideText():
 	$CanvasLayer/RichTextLabel.text = ""
 	$CanvasLayer/RichTextLabel.hide()
+func getRayResult(length):
+	var space_state = get_world_3d().direct_space_state
+	var pos = get_viewport().get_visible_rect().size/2
+	var origin = cam.project_ray_origin(pos)
+	var end = origin + cam.project_ray_normal(pos) * length
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	query.collide_with_areas = true
+	query.exclude = [HITBOX]
+	return space_state.intersect_ray(query)
 var RAY_LENGTH = 4
 var is_visible = false
 func _physics_process(delta: float) -> void:
-	var space_state = get_world_3d().direct_space_state
-	var cam = $Camera3D
-	var pos = get_viewport().get_visible_rect().size/2
-	var origin = cam.project_ray_origin(pos)
-	var end = origin + cam.project_ray_normal(pos) * RAY_LENGTH
-	var query = PhysicsRayQueryParameters3D.create(origin, end)
-	query.collide_with_areas = true
-	var result = space_state.intersect_ray(query)
+	var result = getRayResult(RAY_LENGTH)
 	var noSelection = true
 	Global.Player = self
 	if result.has("collider") and canMove:
