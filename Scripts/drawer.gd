@@ -1,12 +1,12 @@
 extends interactable
-@onready var pathFollow:PathFollow3D = get_parent().get_node("PathFollow3D")
 var closed = true
+var drawLength = 5
 func mess() -> String:
 	return "Open drawer(e)"
 func onInteract(player:CharacterBody3D):
 	var tween = create_tween()
 	if closed:
-		tween.tween_property(pathFollow,"progress_ratio",1.0,1.0)
+		tween.tween_property(self,"position",Vector3(0,0,drawLength),1.0).as_relative()
 	else:
-		tween.tween_property(pathFollow,"progress_ratio",0.0,1.0)
+		tween.tween_property(self,"position",Vector3(0,0,-drawLength),1.0).as_relative()
 	closed = not closed
