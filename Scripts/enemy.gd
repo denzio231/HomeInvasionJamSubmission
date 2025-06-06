@@ -1,6 +1,10 @@
-extends Node3D
-
-func _process(delta):
+extends CharacterBody3D
+@onready var navAgent:NavigationAgent3D = $NavigationAgent3D
+const SPEED = 2
+func _physics_process(delta):
 	var playerPosition = Global.get("Player")
-	look_at(playerPosition.position)
-	#TODO interactions
+	navAgent.target_position = playerPosition.global_position
+	var dir = (navAgent.get_next_path_position()-global_position).normalized()
+	velocity = dir*SPEED
+	look_at(position+dir*Vector3(1,0,1))
+	move_and_slide()
