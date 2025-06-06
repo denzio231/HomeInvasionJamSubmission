@@ -16,8 +16,6 @@ func consoleClear():
 func consoleCmds():
 	for i in cmds.keys():
 		ConsoleControl.consolePrint("\t" + i +": "+cmds[i].desc)
-		
-		ConsoleControl.consolePrint(i+": "+cmds[i].desc)
 var cmds = {
 	"clr" : {
 		"desc" : "Clears text from console",
