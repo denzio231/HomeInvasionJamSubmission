@@ -8,6 +8,7 @@ var attacking = false
 @onready var AnimSprite:AnimatedSprite2D = $CanvasLayer/AnimatedSprite2D
 @onready var cam = $Camera3D
 @onready var HITBOX:Area3D = $Area3D
+@onready var AmbientSound:AudioStreamPlayer3D = $AudioStreamPlayer3D
 func loadAnim(anim:SpriteFrames):
 	AnimSprite.sprite_frames = anim
 	AnimSprite.play("wield")
@@ -42,6 +43,7 @@ func _input(event):
 		get_tree().quit()
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	AmbientSound.play()
 	#$CanvasLayer/AnimatedSprite2D.play("wieldUSB")
 	#await $CanvasLayer/AnimatedSprite2D.animation_finished
 	#$CanvasLayer/AnimatedSprite2D.play("idleUSB")
