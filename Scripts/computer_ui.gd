@@ -105,7 +105,6 @@ func perm_focus():
 func _ready() -> void:
 	Console.release_focus()
 	Console.connect("text_changed",onTextChange,CONNECT_PERSIST)
-	Console.connect("text_changed",onTextChange,CONNECT_PERSIST)
 	Console.connect("caret_changed",onCaretChange,CONNECT_PERSIST)
 
   
