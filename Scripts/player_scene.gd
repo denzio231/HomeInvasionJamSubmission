@@ -1,7 +1,6 @@
 extends CharacterBody3D
 @onready var AudioListener = $AudioStreamPlayer3D
 @onready var AnimSprite:AnimatedSprite2D = $CanvasLayer/AnimatedSprite2D
-@onready var AnimSprite:AnimatedSprite2D = $CanvasLayer/AnimatedSprite2D
 @onready var cam = $Camera3D
 @onready var HITBOX:Area3D = $Area3D
 const SPEED = 5.0
@@ -9,11 +8,7 @@ var sens = 0.3
 var currentHover:StaticBody3D = null
 var canMove = true
 var attacking = false
-<<<<<<< HEAD
 
-=======
-@onready var AnimSprite:AnimatedSprite2D = $CanvasLayer/AnimatedSprite2D
->>>>>>> parent of 625b12f (I did this at 0148 im sorry)
 func loadAnim(anim:SpriteFrames):
 	AnimSprite.sprite_frames = anim
 	AnimSprite.play("wield")

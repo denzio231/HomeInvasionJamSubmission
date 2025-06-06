@@ -8,8 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dhg67ggknvedj" path="res://assets/Models/FBX format/cabin-window-b.fbx" id="6_ioaeq"]
 [ext_resource type="PackedScene" uid="uid://d1mipnvhfba3q" path="res://assets/Models/FBX format/tree.fbx" id="7_7ewk0"]
 [ext_resource type="PackedScene" uid="uid://b8l7yg3i64h85" path="res://assets/Models/FBX format/tree-decorated.fbx" id="8_lhp3t"]
-[gd_scene load_steps=14 format=3 uid="uid://n4t3iteuy0ob"]
-
 [ext_resource type="PackedScene" uid="uid://kx5m88yo3g74" path="res://Scenes/player_scene.tscn" id="1_huasi"]
 [ext_resource type="PackedScene" uid="uid://c4tlottkxb7dr" path="res://assets/wall.blend" id="4_maf8m"]
 [ext_resource type="PackedScene" uid="uid://dl2ode7q6m2u2" path="res://assets/floor.blend" id="5_huasi"]
