@@ -7,24 +7,53 @@ var lastText = ""
 var cols = 0
 var lines = 0
 var isUsr = true
+const bootloader = "res://Scripts/bootloader.txt"
+
+var file
+var rng = RandomNumberGenerator.new()
+
+func startUp():
+	Console.text = ""
+	file = FileAccess.open(bootloader, FileAccess.READ) # Reopen to reset position
+	show_next_bootloader_line()
+	
+func show_next_bootloader_line():
+	if file.eof_reached():
+		print("eof")
+		pwd()
+		perm_focus()
+		return
+	setUneditableString(file.get_line() + "\n")
+	await get_tree().create_timer(rng.randf_range(0.1, 0.5)).timeout
+	show_next_bootloader_line()
+
+
+
 func setUneditableString(text):
-	Console.text+=text
+	Console.text += text
+	lines+=1
 	maxPos = len(Console.text)
+	Console.scroll_vertical = lines
+	Console.set_caret_line(Console.get_line_count() - 1)
+	
 func pwd():
 	Console.editable=false
 	setUneditableString("C:/>")
 	Console.editable=true
 	onTextChange()
 	onCaretChange()
+	
 func quitConsole():
 	quit.emit()
 	Console.disconnect("focus_exited",Console.grab_focus)
 	hide()
 	Console.release_focus()
 var colOveride = false
+
 func consolePrint(text):
 	setUneditableString(text+"\n")
 	onTextChange()
+	
 func cmd(text):
 	text = text.rstrip("\n")
 	var arr = text.split(" ")
@@ -35,7 +64,9 @@ func cmd(text):
 		commandFunc.call()
 	else:
 		consolePrint("Not a command")
+		
 func onTextChange():
+	
 	if len(Console.text) < maxPos:
 		Console.text = lastText
 	if colOveride:
@@ -57,6 +88,7 @@ func onTextChange():
 				pwd()
 				isUsr = true
 	lastText = Console.text
+	
 func onCaretChange():
 	#if Console.get_caret_index_edit_order():
 	Console.set_caret_column(cols)
@@ -66,12 +98,15 @@ func perm_focus():
 	Console.connect("focus_exited",Console.grab_focus,CONNECT_PERSIST)
 	await get_tree().create_timer(0.1).timeout
 	Console.grab_focus()
+	
 func _ready() -> void:
 	Console.release_focus()
 	Console.connect("text_changed",onTextChange,CONNECT_PERSIST)
 	Console.connect("text_changed",onTextChange,CONNECT_PERSIST)
 	Console.connect("caret_changed",onCaretChange,CONNECT_PERSIST)
-	pwd()
+
+  
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

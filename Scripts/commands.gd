@@ -1,8 +1,10 @@
 extends Node2D
 @onready var ConsoleControl = get_parent()
 @onready var Console = get_parent().get_node("TextEdit")
+
 func consoleQuit():
 	ConsoleControl.quitConsole()
+
 func consoleClear():
 	Console.text = ""
 	ConsoleControl.maxPos = 0
@@ -10,11 +12,13 @@ func consoleClear():
 	ConsoleControl.lines = 0
 	ConsoleControl.colOveride = true
 	ConsoleControl.onTextChange()
+
 func consoleCmds():
 	for i in cmds.keys():
-		ConsoleControl.consolePrint(i+": "+cmds[i].desc)
+		ConsoleControl.consolePrint("\t" + i +": "+cmds[i].desc)
+		
 var cmds = {
-	"clear" : {
+	"clr" : {
 		"desc" : "Clears text from console",
 		"call" : consoleClear
 	},
@@ -22,7 +26,7 @@ var cmds = {
 		"desc" : "Quits console",
 		"call" : consoleQuit
 	},
-	"cmds" : {
+	"help" : {
 		"desc" : "Lists commands",
 		"call" : consoleCmds
 	}

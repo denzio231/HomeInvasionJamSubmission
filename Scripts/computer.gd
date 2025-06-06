@@ -1,11 +1,15 @@
 extends interactable
 var isFunctioning = true
+var isFirst = true
 func mess():
 	return "Use Computer(e)"
 func onInteract(player:CharacterBody3D):
 	player.get_node("CanvasLayer").hide()
 	player.canMove = false
-	$CanvasLayer/ComputerUi.perm_focus()
+	if isFirst: $CanvasLayer/ComputerUi.startUp();isFirst=false
+	else:
+		$CanvasLayer/ComputerUi.perm_focus()
+		
 	$CanvasLayer/ComputerUi.show()
 	$CanvasLayer/ComputerUi.connect("quit",func(): 
 		player.canMove = true

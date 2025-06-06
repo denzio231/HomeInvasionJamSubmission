@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy1o6x0bg11q6"]
+[gd_scene load_steps=6 format=3 uid="uid://cy1o6x0bg11q6"]
 
 [ext_resource type="Script" uid="uid://dcgg3o8nfhj80" path="res://Scripts/computer_ui.gd" id="1_vhm3r"]
 [ext_resource type="Script" uid="uid://cjda3e03sdobr" path="res://Scripts/commands.gd" id="2_4g73r"]
+[ext_resource type="Theme" uid="uid://b2hsytsyudpdb" path="res://assets/Themes/ComputerUITheme.tres" id="2_yr2qs"]
+[ext_resource type="FontFile" uid="uid://cv4l4xcpwbro4" path="res://assets/AcPlus_IBM_BIOS-2y.ttf" id="2_yv5cf"]
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_yv5cf"]
+number_color = Color(0.794316, 0, 0.014862, 1)
+symbol_color = Color(1, 1, 1, 1)
+function_color = Color(0.624243, 0.625594, 0.629285, 1)
+member_variable_color = Color(1, 1, 1, 1)
 
 [node name="ComputerUi" type="Control"]
 layout_mode = 3
@@ -16,13 +24,18 @@ script = ExtResource("1_vhm3r")
 layout_mode = 0
 offset_right = 534.0
 offset_bottom = 300.0
+theme = ExtResource("2_yr2qs")
+theme_override_fonts/font = ExtResource("2_yv5cf")
 context_menu_enabled = false
 emoji_menu_enabled = false
 selecting_enabled = false
+scroll_smooth = true
+scroll_fit_content_width = true
 caret_type = 1
 caret_blink = true
 caret_move_on_right_click = false
 caret_multiple = false
+syntax_highlighter = SubResource("CodeHighlighter_yv5cf")
 
 [node name="Commands" type="Node2D" parent="."]
 script = ExtResource("2_4g73r")

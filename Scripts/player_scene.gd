@@ -1,11 +1,12 @@
 extends CharacterBody3D
-
+@onready var AudioListener = $AudioStreamPlayer3D
+@onready var AnimSprite:AnimatedSprite2D = $CanvasLayer/AnimatedSprite2D
 const SPEED = 5.0
 var sens = 0.3
 var currentHover:StaticBody3D = null
 var canMove = true
 var attacking = false
-@onready var AnimSprite:AnimatedSprite2D = $CanvasLayer/AnimatedSprite2D
+
 func loadAnim(anim:SpriteFrames):
 	AnimSprite.sprite_frames = anim
 	AnimSprite.play("wield")
@@ -36,6 +37,7 @@ func _input(event):
 		get_tree().quit()
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	AudioListener.play()
 	#$CanvasLayer/AnimatedSprite2D.play("wieldUSB")
 	#await $CanvasLayer/AnimatedSprite2D.animation_finished
 	#$CanvasLayer/AnimatedSprite2D.play("idleUSB")
