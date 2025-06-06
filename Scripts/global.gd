@@ -1,4 +1,4 @@
 extends Node
 
-var Player
-var PendrivesCaught = 0
+var Player:CharacterBody3D
+var pendriveHeld:interactable

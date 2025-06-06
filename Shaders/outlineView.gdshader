@@ -37,7 +37,7 @@ void fragment() {
 	normDot /= 4.0;
 	sumDiffDepth /= 4.0;
 	if((normDot<0.99||sumDiffDepth>0.001)){
-		float brightness = 1.0*(1.0/(12.0*linearDepth));
+		float brightness = 1.0*(1.0/(4.0*linearDepth));
 		if(brightness<0.0001){
 			brightness=0.0;
 		}

@@ -8,9 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://dhg67ggknvedj" path="res://assets/Models/FBX format/cabin-window-b.fbx" id="6_ioaeq"]
 [ext_resource type="PackedScene" uid="uid://d1mipnvhfba3q" path="res://assets/Models/FBX format/tree.fbx" id="7_7ewk0"]
 [ext_resource type="PackedScene" uid="uid://b8l7yg3i64h85" path="res://assets/Models/FBX format/tree-decorated.fbx" id="8_lhp3t"]
+[gd_scene load_steps=14 format=3 uid="uid://n4t3iteuy0ob"]
+
+[ext_resource type="PackedScene" uid="uid://kx5m88yo3g74" path="res://Scenes/player_scene.tscn" id="1_huasi"]
+[ext_resource type="PackedScene" uid="uid://c4tlottkxb7dr" path="res://assets/wall.blend" id="4_maf8m"]
+[ext_resource type="PackedScene" uid="uid://dl2ode7q6m2u2" path="res://assets/floor.blend" id="5_huasi"]
+[ext_resource type="PackedScene" uid="uid://d3fwa306ed42n" path="res://Scenes/Drawer.tscn" id="7_huasi"]
 [ext_resource type="PackedScene" uid="uid://hax36dt4emyq" path="res://Scenes/enemy.tscn" id="10_76v2p"]
 [ext_resource type="PackedScene" uid="uid://de3ruflukwqh7" path="res://Scenes/computer_scene.tscn" id="10_mai8y"]
 [ext_resource type="PackedScene" uid="uid://dejchndi0bnh" path="res://Scenes/USB.tscn" id="11_76v2p"]
+[ext_resource type="PackedScene" uid="uid://dk3tdxplt5us1" path="res://assets/door.blend" id="12_drdnd"]
 
 [sub_resource type="GDScript" id="GDScript_mai8y"]
 script/source = "extends Node
@@ -31,6 +38,10 @@ glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_76v2p"]
 size = Vector3(2.55127, 2.47656, 1.63574)
+[sub_resource type="NavigationMesh" id="NavigationMesh_76v2p"]
+vertices = PackedVector3Array(-3.40692, 1.44494, -8.46627, 7.84308, 1.44494, -8.71627, 7.34308, 1.44494, -8.96627, 7.34308, 1.44494, -26.7163, -3.90692, 1.44494, -26.7163, 3.84308, 1.44494, 7.53373, 2.34308, 1.44494, 7.53373, 2.59308, 1.44494, 8.53373, 18.5931, 1.44494, 8.53373, -1.65692, 1.44494, 8.28373, -1.90692, 1.44494, 6.78373, -3.40692, 1.44494, 8.53373, 0.343083, 1.44494, 8.53373, -0.156917, 1.44494, 8.03373, 1.09308, 1.44494, 7.53373, 1.09308, 1.44494, 6.03373, -0.406917, 1.44494, 6.53373, 4.09308, 1.44494, 6.28373, 18.5931, 1.44494, -8.71627)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 8), PackedInt32Array(11, 10, 9), PackedInt32Array(12, 11, 9), PackedInt32Array(12, 9, 13), PackedInt32Array(12, 13, 14), PackedInt32Array(14, 13, 16), PackedInt32Array(14, 16, 15), PackedInt32Array(5, 17, 8), PackedInt32Array(8, 17, 1), PackedInt32Array(8, 1, 18), PackedInt32Array(17, 15, 1), PackedInt32Array(1, 15, 0), PackedInt32Array(16, 10, 15), PackedInt32Array(15, 10, 0), PackedInt32Array(10, 11, 0), PackedInt32Array(6, 7, 14), PackedInt32Array(14, 7, 12)]
+agent_max_slope = 50.0
 
 [node name="MainScene" type="Node3D"]
 script = SubResource("GDScript_mai8y")
@@ -42,21 +53,23 @@ environment = SubResource("Environment_2c62f")
 transform = Transform3D(0.999978, -0.0063817, 0.00194265, 0.00637674, 0.999976, 0.00254708, -0.00195884, -0.00253464, 0.999995, 0.0269547, 2.70614, 4.00064)
 
 [node name="GridMap" parent="." instance=ExtResource("2_76v2p")]
+[node name="Usb" parent="." instance=ExtResource("11_76v2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95299, 1.52694, 3.9614)
 
-[node name="bench-short" parent="." instance=ExtResource("3_mai8y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.306146, 1, 7.8141)
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_76v2p")
 
-[node name="bench" parent="." instance=ExtResource("4_76v2p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.35329, 1, 10.6364)
+[node name="MainMap" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="cabin-corner" parent="." instance=ExtResource("5_drdnd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.147796, 1, 9.74638)
+[node name="ComputerScene" parent="NavigationRegion3D/MainMap" instance=ExtResource("10_mai8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27941, 3.5, 14.7518)
 
-[node name="cabin-window-b" parent="." instance=ExtResource("6_ioaeq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81183, 1, 14.3734)
+[node name="wall" parent="NavigationRegion3D/MainMap" instance=ExtResource("4_maf8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.08077, 0, 9.15688)
 
-[node name="tree" parent="." instance=ExtResource("7_7ewk0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.11937, 1, 7.93265)
+[node name="wall2" parent="NavigationRegion3D/MainMap" instance=ExtResource("4_maf8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -7)
 
 [node name="Area3D" type="Area3D" parent="tree"]
 
@@ -66,12 +79,23 @@ shape = SubResource("BoxShape3D_76v2p")
 
 [node name="tree-decorated" parent="." instance=ExtResource("8_lhp3t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.869369, 1, 12.5342)
+[node name="wall3" parent="NavigationRegion3D/MainMap" instance=ExtResource("4_maf8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -23)
 
-[node name="ComputerScene" parent="." instance=ExtResource("10_mai8y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27941, 1.5, 14.7518)
+[node name="floor" parent="NavigationRegion3D/MainMap" instance=ExtResource("5_huasi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="floor2" parent="NavigationRegion3D/MainMap" instance=ExtResource("5_huasi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 0)
+
+[node name="floor3" parent="NavigationRegion3D/MainMap" instance=ExtResource("5_huasi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -36)
+
+[node name="door" parent="NavigationRegion3D/MainMap" instance=ExtResource("12_drdnd")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 2, 10)
+
+[node name="interactable" parent="NavigationRegion3D/MainMap" instance=ExtResource("7_huasi")]
+transform = Transform3D(1.99999, 0, 0, 0, 1.99999, 0, 0, 0, 1.99999, -2, 2, -8)
 
 [node name="Enemy" parent="." instance=ExtResource("10_76v2p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45104, 0)
-
-[node name="Usb" parent="." instance=ExtResource("11_76v2p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95299, 1.88379, 3.9614)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.45104, 0)

@@ -1,20 +1,17 @@
 extends CharacterBody3D
-@onready var raycast = $MeshInstance3D/RayCast3D
-@onready var audio = $AudioStreamPlayer3D
-var speed = 1
-var pitch = 1
-#func _ready():
-	#audio.play()
-	
-func _process(delta):
+@onready var navAgent:NavigationAgent3D = $NavigationAgent3D
+const SPEED = 2
+var stun = false
+func deal_damage():
+	stun = true
+	get_tree().create_timer(10).connect("timeout",func(): stun=false)
+func _physics_process(delta):
 	var playerPosition = Global.get("Player")
-	
-	look_at(playerPosition.position)
-	velocity = -basis.z * speed
+	navAgent.target_position = playerPosition.global_position
+	var dir = (navAgent.get_next_path_position()-global_position).normalized()
+	if stun:
+		velocity = Vector3.ZERO
+	else:
+		velocity = dir*SPEED
+	look_at(position+dir*Vector3(1,0,1))
 	move_and_slide()
-	#RayCast3D.new().
-	#print(raycast.get_collider())
-	if raycast.get_collider():
-		if(raycast.get_collider().get("name") == "CharacterBody3D"): 
-			speed *= 1.0005
-		

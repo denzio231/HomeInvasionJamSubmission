@@ -29,6 +29,9 @@ func show_next_bootloader_line():
 
 
 
+var penDriveConnected = null
+func setPenDrive(pendrive):
+	penDriveConnected = pendrive
 func setUneditableString(text):
 	Console.text += text
 	lines+=1
@@ -61,7 +64,7 @@ func cmd(text):
 	var commandT = $Commands.cmds.get(cmd)
 	if commandT:
 		var commandFunc = commandT.call
-		commandFunc.call()
+		await commandFunc.call()
 	else:
 		consolePrint("Not a command")
 		
