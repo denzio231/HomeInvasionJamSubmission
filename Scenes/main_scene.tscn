@@ -48,7 +48,7 @@ transform = Transform3D(0.999978, -0.0063817, 0.00194265, 0.00637674, 0.999976, 
 [node name="GridMap" parent="." instance=ExtResource("2_76v2p")]
 
 [node name="Usb" parent="." instance=ExtResource("11_76v2p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95299, 2.88379, 3.9614)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26112, 1.54553, 7.36848)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_76v2p")
