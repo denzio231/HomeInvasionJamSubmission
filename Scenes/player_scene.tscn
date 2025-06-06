@@ -1,6 +1,5 @@
 [gd_scene load_steps=10 format=3 uid="uid://kx5m88yo3g74"]
 
-
 [ext_resource type="Script" uid="uid://de7e2ihsy7rwx" path="res://Scripts/player_scene.gd" id="1_g662q"]
 [ext_resource type="Shader" uid="uid://d1k26yjhjcs78" path="res://Shaders/outlineView.gdshader" id="2_g5c48"]
 [ext_resource type="AudioStream" uid="uid://lnebdn6vn5bq" path="res://assets/Sounds/computer-fan-ambience-72053.mp3" id="2_oirxf"]
@@ -23,8 +22,6 @@ animations = [{
 "name": &"default",
 "speed": 120.0
 }]
-[sub_resource type="BoxShape3D" id="BoxShape3D_e13mc"]
-size = Vector3(1.50513, 2.01099, 1.78169)
 
 [node name="PlayerScene" type="CharacterBody3D" groups=["interactable"]]
 collision_layer = 8
