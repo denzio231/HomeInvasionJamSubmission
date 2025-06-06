@@ -46,7 +46,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.70614, 3.95377)
 
 [node name="Usb" parent="." instance=ExtResource("11_76v2p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95299, 2.88379, 3.9614)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95299, 1.52694, 3.9614)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_76v2p")

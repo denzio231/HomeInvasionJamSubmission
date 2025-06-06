@@ -7,6 +7,9 @@ var lastText = ""
 var cols = 0
 var lines = 0
 var isUsr = true
+var penDriveConnected = null
+func setPenDrive(pendrive):
+	penDriveConnected = pendrive
 func setUneditableString(text):
 	Console.text+=text
 	maxPos = len(Console.text)
@@ -32,7 +35,7 @@ func cmd(text):
 	var commandT = $Commands.cmds.get(cmd)
 	if commandT:
 		var commandFunc = commandT.call
-		commandFunc.call()
+		await commandFunc.call()
 	else:
 		consolePrint("Not a command")
 func onTextChange():

@@ -5,6 +5,8 @@ func mess():
 func onInteract(player:CharacterBody3D):
 	player.get_node("CanvasLayer").hide()
 	player.canMove = false
+	if Global.pendriveHeld:
+		$CanvasLayer/ComputerUi.setPenDrive(Global.pendriveHeld)
 	$CanvasLayer/ComputerUi.perm_focus()
 	$CanvasLayer/ComputerUi.show()
 	$CanvasLayer/ComputerUi.connect("quit",func(): 

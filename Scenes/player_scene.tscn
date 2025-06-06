@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://kx5m88yo3g74"]
+[gd_scene load_steps=8 format=3 uid="uid://kx5m88yo3g74"]
 
 [ext_resource type="Script" uid="uid://de7e2ihsy7rwx" path="res://Scripts/player_scene.gd" id="1_g662q"]
 [ext_resource type="Shader" uid="uid://d1k26yjhjcs78" path="res://Shaders/outlineView.gdshader" id="2_g5c48"]
@@ -12,6 +12,9 @@ size = Vector2(2, 2)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g5c48"]
 render_priority = 0
 shader = ExtResource("2_g5c48")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e13mc"]
+size = Vector3(1.50513, 2.01099, 1.78169)
 
 [node name="PlayerScene" type="CharacterBody3D" groups=["interactable"]]
 collision_layer = 8
@@ -66,3 +69,10 @@ texture_filter = 1
 position = Vector2(322, 180)
 scale = Vector2(2, 2)
 animation = &""
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0936279, 0.0467529, -1.06297)
+shape = SubResource("BoxShape3D_e13mc")
