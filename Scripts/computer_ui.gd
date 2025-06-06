@@ -7,6 +7,7 @@ var lastText = ""
 var cols = 0
 var lines = 0
 var isUsr = true
+<<<<<<< HEAD
 const bootloader = "res://Scripts/bootloader.txt"
 
 var file
@@ -32,6 +33,8 @@ func show_next_bootloader_line():
 var penDriveConnected = null
 func setPenDrive(pendrive):
 	penDriveConnected = pendrive
+=======
+>>>>>>> parent of 625b12f (I did this at 0148 im sorry)
 func setUneditableString(text):
 	Console.text += text
 	lines+=1
@@ -64,7 +67,7 @@ func cmd(text):
 	var commandT = $Commands.cmds.get(cmd)
 	if commandT:
 		var commandFunc = commandT.call
-		await commandFunc.call()
+		commandFunc.call()
 	else:
 		consolePrint("Not a command")
 		
