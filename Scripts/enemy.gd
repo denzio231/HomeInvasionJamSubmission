@@ -7,6 +7,5 @@ func _physics_process(delta):
 	navAgent.target_position = playerPosition.global_position
 	var dir = (navAgent.get_next_path_position()-global_position).normalized()
 	velocity = dir*SPEED
-	
 	look_at(position+dir*Vector3(1,0,1))
 	move_and_slide()

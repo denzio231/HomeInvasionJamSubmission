@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://de3ruflukwqh7"]
+[gd_scene load_steps=6 format=3 uid="uid://de3ruflukwqh7"]
 
 [ext_resource type="Script" uid="uid://dfyopn55xhsya" path="res://Scripts/computer.gd" id="1_23dkc"]
 [ext_resource type="PackedScene" uid="uid://cy1o6x0bg11q6" path="res://Scenes/ComputerUI.tscn" id="2_hn8aq"]
+[ext_resource type="AudioStream" uid="uid://dvgj1tgmccc4d" path="res://assets/Sounds/bootup.mp3" id="3_y1re1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0idks"]
 
@@ -24,3 +25,7 @@ shape = SubResource("ConvexPolygonShape3D_0idks")
 
 [node name="ComputerUi" parent="MeshInstance3D/interactable/CanvasLayer" instance=ExtResource("2_hn8aq")]
 visible = false
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MeshInstance3D/interactable"]
+stream = ExtResource("3_y1re1")
+panning_strength = 3.0

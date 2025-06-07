@@ -27,11 +27,10 @@ func show_next_bootloader_line():
 	await get_tree().create_timer(rng.randf_range(0.1, 0.5)).timeout
 	show_next_bootloader_line()
 
-
-
 var penDriveConnected = null
 func setPenDrive(pendrive):
 	penDriveConnected = pendrive
+
 func setUneditableString(text):
 	Console.text += text
 	lines+=1

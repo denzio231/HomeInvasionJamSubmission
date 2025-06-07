@@ -80,3 +80,4 @@ shape = SubResource("BoxShape3D_e13mc")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_oirxf")
+panning_strength = 3.0

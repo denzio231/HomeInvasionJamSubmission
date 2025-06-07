@@ -13,6 +13,7 @@ script = ExtResource("1_lx1ul")
 metadata/_custom_type_script = "uid://bfvrmdsvvwjs5"
 
 [node name="drawer" parent="." instance=ExtResource("2_fhdnw")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.284768, 0.290194, 0.945422)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0220947, 0.602417, -0.206665)

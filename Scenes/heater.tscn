@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6rrtmdvprvpv"]
+
+[ext_resource type="ArrayMesh" uid="uid://d11duh4hpvyy3" path="res://assets/Models/OBJ format/hanukkah-menorah-candles.obj" id="1_vdkgi"]
+[ext_resource type="AudioStream" uid="uid://ckt58c2t2tga6" path="res://assets/Sounds/electric-wall-heater-271524.mp3" id="2_ffror"]
+
+[node name="Heater" type="Node3D"]
+
+[node name="Hanukkah-menorah-candles" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 13.2152, 1.97785, 15.8479)
+mesh = ExtResource("1_vdkgi")
+skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/MainScene/NavigationRegion3D/MainMap")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_ffror")
+autoplay = true

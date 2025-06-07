@@ -13,6 +13,11 @@ func consoleClear():
 	ConsoleControl.colOveride = true
 	ConsoleControl.onTextChange()
 
+func listPartitions():
+	pass
+
+func repairPartition():
+	pass
 func consoleCmds():
 	for i in cmds.keys():
 		ConsoleControl.consolePrint("\t" + i +": "+cmds[i].desc)
@@ -28,5 +33,22 @@ var cmds = {
 	"help" : {
 		"desc" : "Lists commands",
 		"call" : consoleCmds
+	},
+	"lsblk":{
+		"desc": "List Partitions",
+		"call": listPartitions
+	},
+	"repair":{
+		"desc":"Repair corrupted files",
+		"call": repairPartition
+	},
+	"ls":{
+		"desc":"List files",
+		"call": ""
+	},
+	"cat":{
+		"desc":"Print files to the console",
+		"call":""
 	}
+	
 }

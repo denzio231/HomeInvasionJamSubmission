@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://hax36dt4emyq"]
+[gd_scene load_steps=6 format=3 uid="uid://hax36dt4emyq"]
 
 [ext_resource type="Script" uid="uid://ch5esw4l5jfnf" path="res://Scripts/enemy.gd" id="1_hghv2"]
+[ext_resource type="AudioStream" uid="uid://1bxa4j7afe6x" path="res://assets/Sounds/075283_quotbehind-youquot-whisper-86744.mp3" id="2_1f0kj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ne65n"]
 
@@ -25,3 +26,8 @@ shape = SubResource("CapsuleShape3D_hghv2")
 [node name="ShapeCast3D" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03187, 0)
 shape = SubResource("SphereShape3D_hghv2")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_1f0kj")
+autoplay = true
+max_distance = 2.0

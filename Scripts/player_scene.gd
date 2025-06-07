@@ -9,6 +9,7 @@ var attacking = false
 @onready var cam = $Camera3D
 @onready var HITBOX:Area3D = $Area3D
 @onready var AmbientSound:AudioStreamPlayer3D = $AudioStreamPlayer3D
+
 func loadAnim(anim:SpriteFrames):
 	AnimSprite.sprite_frames = anim
 	AnimSprite.play("wield")
