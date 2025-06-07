@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://hax36dt4emyq"]
+[gd_scene load_steps=10 format=3 uid="uid://hax36dt4emyq"]
 
 [ext_resource type="Script" uid="uid://ch5esw4l5jfnf" path="res://Scripts/enemy.gd" id="1_hghv2"]
 [ext_resource type="AudioStream" uid="uid://1bxa4j7afe6x" path="res://assets/Sounds/075283_quotbehind-youquot-whisper-86744.mp3" id="2_1f0kj"]
+[ext_resource type="Script" uid="uid://g16v70y0eury" path="res://Scripts/finite_state_machine.gd" id="3_287tu"]
+[ext_resource type="Script" uid="uid://c1377qt6ssjfs" path="res://Scripts/States/search_state.gd" id="4_0830c"]
+[ext_resource type="Script" uid="uid://baw6hqh6wyyfg" path="res://Scripts/States/chase_state.gd" id="5_0830c"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ne65n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hghv2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1f0kj"]
-radius = 15.0
+radius = 10.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_0830c"]
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 collision_layer = 4
@@ -29,6 +34,26 @@ autoplay = true
 max_distance = 2.0
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_1f0kj")
+
+[node name="FSM" type="Node" parent="." node_paths=PackedStringArray("default_state")]
+script = ExtResource("3_287tu")
+default_state = NodePath("searchState")
+metadata/_custom_type_script = "uid://g16v70y0eury"
+
+[node name="searchState" type="Node" parent="FSM" node_paths=PackedStringArray("chaseState")]
+script = ExtResource("4_0830c")
+chaseState = NodePath("../chaseState")
+metadata/_custom_type_script = "uid://c00r46ors7p7"
+
+[node name="chaseState" type="Node" parent="FSM" node_paths=PackedStringArray("searchState")]
+script = ExtResource("5_0830c")
+searchState = NodePath("../searchState")
+metadata/_custom_type_script = "uid://c00r46ors7p7"
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.208263, -0.380386)
+mesh = SubResource("SphereMesh_0830c")

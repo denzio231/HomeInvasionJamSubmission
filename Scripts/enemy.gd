@@ -2,7 +2,8 @@ extends CharacterBody3D
 @onready var navAgent:NavigationAgent3D = $NavigationAgent3D
 @onready var detectionArea: Area3D = $Area3D
 @export var wayPoints:Node3D
-const SPEED = 2
+var detectableRange = 10
+var SPEED = 2
 var target:Marker3D
 func chooseMarker():
 	var wps = wayPoints.get_children()
@@ -11,15 +12,19 @@ func chooseMarker():
 	target = wps.pick_random()
 func _ready() -> void:
 	chooseMarker()
-func _physics_process(delta):
-	#var playerPosition = target
-	if not target:
-		return
-	print((target.global_position-global_position).length())
-	if (target.global_position-global_position).length()<1:
-		chooseMarker()
-	navAgent.target_position = target.global_position
-	var dir = (navAgent.get_next_path_position()-global_position).normalized()
-	velocity = dir*SPEED
-	look_at(position+dir*Vector3(1,0,1))
-	move_and_slide()
+func isPlayerVisible():
+	var space_state = get_world_3d().direct_space_state
+	var origin = global_position
+	var vec = Global.Player.global_position-origin
+	if vec.length()>detectableRange:
+		return false
+	var dir = vec.normalized()
+	if dir.dot(transform.basis*Vector3.FORWARD)<0.7:
+		return false
+	var query = PhysicsRayQueryParameters3D.create(origin, origin+dir*detectableRange)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	if result.has("collider"):
+		return result.collider==Global.Player
+	return false
+	
