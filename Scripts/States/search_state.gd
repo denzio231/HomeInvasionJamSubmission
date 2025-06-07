@@ -6,6 +6,7 @@ var detectorArea:Area3D
 func enter(mN):
 	mainNode = mN
 	mainNode.SPEED = 2
+	mainNode.FOV = 160
 	detectorArea = mainNode.get_node("Area3D")
 func search(delta):
 	if not mainNode.target:

@@ -3,6 +3,7 @@ extends CharacterBody3D
 @onready var detectionArea: Area3D = $Area3D
 @export var wayPoints:Node3D
 var detectableRange = 10
+var FOV = 160
 var SPEED = 2
 var target:Marker3D
 func chooseMarker():
@@ -19,7 +20,8 @@ func isPlayerVisible():
 	if vec.length()>detectableRange:
 		return false
 	var dir = vec.normalized()
-	if dir.dot(transform.basis*Vector3.FORWARD)<0.7:
+	var ang = acos(dir.dot(transform.basis*Vector3.FORWARD))
+	if rad_to_deg(ang)>FOV/2:
 		return false
 	var query = PhysicsRayQueryParameters3D.create(origin, origin+dir*detectableRange)
 	query.exclude = [self]

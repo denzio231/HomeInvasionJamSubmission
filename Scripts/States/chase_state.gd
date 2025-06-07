@@ -7,6 +7,7 @@ var detectorArea:Area3D
 func enter(mN):
 	mainNode = mN
 	mainNode.SPEED = 6
+	mainNode.FOV = 360
 	detectorArea = mainNode.get_node("Area3D")
 func chase(delta):
 	mainNode.navAgent.target_position = Global.Player.global_position
