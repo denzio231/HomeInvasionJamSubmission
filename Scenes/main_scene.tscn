@@ -117,5 +117,24 @@ autoplay = true
 max_distance = 3.0
 panning_strength = 3.0
 
-[node name="Enemy" parent="." instance=ExtResource("10_76v2p")]
+[node name="Enemy" parent="." node_paths=PackedStringArray("wayPoints") instance=ExtResource("10_76v2p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6677, 3.81548, 7.48962)
+wayPoints = NodePath("../Waypoints")
+
+[node name="Waypoints" type="Node3D" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="Waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1936, 2.1873, 20.9982)
+gizmo_extents = 1.0
+
+[node name="Marker3D2" type="Marker3D" parent="Waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1936, 2.1873, 36.4612)
+gizmo_extents = 1.0
+
+[node name="Marker3D3" type="Marker3D" parent="Waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3537, 2.1873, 24.4773)
+gizmo_extents = 1.0
+
+[node name="Marker3D4" type="Marker3D" parent="Waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0549, 2.1873, 2.65722)
+gizmo_extents = 1.0
