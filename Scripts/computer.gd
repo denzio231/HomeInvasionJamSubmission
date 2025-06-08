@@ -12,8 +12,8 @@ func onInteract(player:CharacterBody3D):
 	else:
 		$CanvasLayer/ComputerUi.perm_focus()
 		
-	if Global.pendriveHeld:
-		$CanvasLayer/ComputerUi.setPenDrive(Global.pendriveHeld)
+	if Global.PendriveHeld:
+		$CanvasLayer/ComputerUi.setPenDrive(Global.PendriveHeld)
 	
 	$CanvasLayer/ComputerUi.show()
 	$CanvasLayer/ComputerUi.connect("quit",func(): 

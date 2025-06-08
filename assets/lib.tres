@@ -17,9 +17,8 @@ image = SubResource("Image_iwr8w")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l84o4"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="TorusMesh" id="TorusMesh_qkabg"]
-inner_radius = 0.25
-outer_radius = 0.5
+[sub_resource type="BoxMesh" id="BoxMesh_eip24"]
+size = Vector3(1, 2, 1)
 
 [sub_resource type="Image" id="Image_eip24"]
 data = {
@@ -46,10 +45,10 @@ item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 
 item/0/navigation_layers = 1
 item/0/preview = SubResource("ImageTexture_u0v8g")
 item/1/name = "MeshInstance3D2"
-item/1/mesh = SubResource("TorusMesh_qkabg")
+item/1/mesh = SubResource("BoxMesh_eip24")
 item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/mesh_cast_shadow = 1
 item/1/shapes = [SubResource("ConvexPolygonShape3D_bjrns"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
-item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
 item/1/navigation_layers = 1
 item/1/preview = SubResource("ImageTexture_f6v6j")

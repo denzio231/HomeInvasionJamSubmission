@@ -14,9 +14,13 @@ func consoleClear():
 	ConsoleControl.onTextChange()
 
 func listPartitions():
-	pass
+	var partitions = Global.get("PendrivesCaught")
+	for i in range(partitions):
+		ConsoleControl.consolePrint("/dev/sda" + str(i))
+
 
 func repairPartition():
+	ConsoleControl.consolePrint()
 	pass
 func consoleCmds():
 	for i in cmds.keys():
